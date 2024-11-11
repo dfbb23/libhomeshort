@@ -1,0 +1,18 @@
+char *ft_substr(char const *s, unsigned int start, size_t len)
+{
+    char *p;
+    size_t s_len = strlen(s);
+
+    if (!s)
+        return NULL;
+    if (start >= s_len)
+        return ft_strdup("");
+    if (len > s_len - start)
+        len = s_len - start;
+    p = malloc(len + 1);
+    if (!p)
+        return NULL;
+    memcpy(p, s + start, len);
+    p[len] = '\0';
+    return p;
+}

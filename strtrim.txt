@@ -1,0 +1,31 @@
+
+char *ft_strtrim(char const *s1, char const *set)
+{
+    int start = 0;
+    int end;
+    int len;
+    char *new;
+
+    if (s1 == NULL || set == NULL)
+        return (NULL);
+    end = strlen(s1) - 1;
+    while (s1[start] && strchr(set, s1[start]))
+        start++;
+    while (end > start && strchr(set, s1[end]))
+        end--;
+    if (start > end)
+    {
+        new = malloc(1);
+        if (!new)
+            return (NULL);
+        new[0] = '\0';
+        return (new);
+    }
+    len = end - start + 1;
+    new = malloc(len + 1);  
+    if (!new)
+        return (NULL);
+    memcpy(new, &s1[start], len);
+    new[len] = '\0';
+    return (new);
+}

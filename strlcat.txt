@@ -1,0 +1,48 @@
+#include "libft.h"
+#include <stddef.h>
+#include <string.h>
+
+size_t ft_strlcat(char *dst, const char *src, size_t size)
+{
+    size_t ld;  // Length of dst
+    size_t ls;  // Length of src
+
+    // Handle cases when dst is NULL and size is 0 (special case)
+    if (!dst && size == 0)
+        return ft_strlen(src);
+
+    ld = ft_strlen(dst);
+    ls = ft_strlen(src);
+
+    // If size is less than or equal to the length of dst, return size + length of src
+    if (size <= ld)
+        return size + ls;
+
+    // Calculate the number of bytes to copy from src to dst
+    size_t to_copy = size - ld - 1;
+
+    // Use memcpy to copy the data from src to dst
+    if (to_copy > 0)
+    {
+        memcpy(dst + ld, src, to_copy);
+    }
+
+    // Null-terminate the result string
+    dst[ld + to_copy] = '\0';
+
+    // Return the total length of the concatenated string
+    return ld + ls;
+}
+
+// Example usage
+/*
+int main(void)
+{
+    char dst[20] = "Hello";
+    char src[12] = " world !";
+
+    printf("%zu\n", ft_strlcat(dst, src, 15));  // Expected output: 15
+    printf("%s\n", dst);  // Expected output: "Hello world !"
+}
+*/
+

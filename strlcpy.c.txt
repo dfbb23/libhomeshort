@@ -1,0 +1,23 @@
+#include <stddef.h>
+#include <stdio.h>
+#include <string.h>
+
+size_t ft_strlcpy(char *dst, const char *src, size_t size)
+{
+    size_t src_len;
+
+    src_len = strlen(src);
+    if (size == 0)
+        return src_len;
+    memcpy(dst, src, size - 1);
+    dst[size - 1] = '\0';
+    return src_len;
+}
+
+int main(void)
+{
+    char dst[12];
+    char *src = "hello";
+    printf("%zu\n", ft_strlcpy(dst, src, 12));  // Expected output: 5
+    printf("%s\n", dst);  // Expected output: "hello"
+}

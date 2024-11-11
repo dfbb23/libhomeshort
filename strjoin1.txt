@@ -1,0 +1,42 @@
+#include "libft.h"
+#include <stdlib.h>
+#include <string.h>
+
+char *ft_strjoin(char const *s1, char const *s2)
+{
+    char *new;
+    size_t s1_len;
+    size_t s2_len;
+
+    if (s1 == NULL || s2 == NULL)
+        return NULL;
+
+    s1_len = ft_strlen(s1);
+    s2_len = ft_strlen(s2);
+    
+    // Allocate memory for the new string
+    new = malloc(s1_len + s2_len + 1);
+    if (new == NULL)
+        return NULL;
+
+    // Copy s1 into new
+    memcpy(new, s1, s1_len);
+    
+    // Copy s2 into new starting after s1's length
+    memcpy(new + s1_len, s2, s2_len);
+
+    // Null-terminate the result string
+    new[s1_len + s2_len] = '\0';
+
+    return new;
+}
+
+/*
+int main()
+{
+    char *c1 = "abde ";
+    char *c2 = "samad";
+
+    printf("%s\n", ft_strjoin(c1, c2));  // Expected output: "abde samad"
+}
+*/
